@@ -134,15 +134,69 @@ public class OrderedArrayList {
     // main method solely for testing purposes
     public static void main( String[] args ) 
     {
-	OrderedArrayList Jan = new OrderedArrayList();
-	OrderedArrayList Anna = new OrderedArrayList();
+	OrderedArrayList Franz = new OrderedArrayList();
 
-	for (int i=0; i<10000; i++) {
-	    int valueToAdd = (int)(Math.random()*10000);
-	    Jan.addBinary(valueToAdd);
-	    Anna.addBinary(valueToAdd);
+	System.out.println("\nValues to add via addLinear() calls:");
+
+	// testing linear search
+	for( int i = 0; i < 15; i++ ) {
+	    int valToAdd = (int)( 50 * Math.random() );
+	    System.out.println( valToAdd );
+	    Franz.addLinear( valToAdd );
 	}
 
+	System.out.println("\nafter population via addLinear() calls:");
+	System.out.println( Franz );
+	System.out.println();
+
+	Franz = new OrderedArrayList();
+
+	System.out.println("\nValues to add via addBinary() calls:");
+
+				
+	// testing binary search
+	for( int i = 0; i < 15; i++ ) {
+	    int valToAdd = (int)( 50 * Math.random() );
+	    System.out.println( valToAdd );
+	    Franz.addBinary( valToAdd );
+	}
+
+	System.out.println("\nafter population via addBinary() calls:");
+	System.out.println( Franz );
+	System.out.println("\n\n\n");
+
+	/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	   Method for timing: 
+	   currentTimeMillis() returns the time from epoch in milliseconds as a long. If we record
+	   this value at the start and end of the tests and then take the difference between those 
+	   times, we will have the amount of time in milliseconds that the tests each took.
+	   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+	OrderedArrayList Jan = new OrderedArrayList();
+	for(int i = 0; i < 100000; i++){
+	    Jan._data.add(i);
+	}
+	System.out.println("Testing find function timing");
+	System.out.println("Testing findLin for 100000 values, 100000 times...");
+	
+	long initialLin = System.currentTimeMillis();
+	for (int i=0; i<100000; i++) {
+	    int valToFind = (int)( 100000 * Math.random() );
+	    Jan.findLin(valToFind);
+	}
+	long finalLin = System.currentTimeMillis();
+	
+	System.out.println("Testing findBin for 100000 values, 100000 times...");
+	
+	long initialBin = System.currentTimeMillis();
+	for (int i=0; i<100000; i++) {
+	    int valToFind = (int)( 100000 * Math.random() );
+	    Jan.findBin(valToFind);
+	}
+	long finalBin = System.currentTimeMillis();
+
+	System.out.println("findLin: " + (finalLin - initialLin) + " ms");
+	System.out.println("findBin: " + (finalBin - initialBin) + " ms");
 	/*
 	  Test Cases:
 	  - look for last element
