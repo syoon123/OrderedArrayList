@@ -134,46 +134,22 @@ public class OrderedArrayList {
     // main method solely for testing purposes
     public static void main( String[] args ) 
     {
-	OrderedArrayList Franz = new OrderedArrayList();
+	OrderedArrayList Jan = new OrderedArrayList();
+	OrderedArrayList Anna = new OrderedArrayList();
 
-	System.out.println("\nValues to add via addLinear() calls:");
-
-	// testing linear search
-	for( int i = 0; i < 15; i++ ) {
-	    int valToAdd = i;
-	    //System.out.println( valToAdd );
-	    Franz.addLinear( valToAdd );
+	for (int i=0; i<10000; i++) {
+	    int valueToAdd = (int)(Math.random()*10000);
+	    Jan.addBinary(valueToAdd);
+	    Anna.addBinary(valueToAdd);
 	}
 
-	System.out.println("\nafter population via addLinear() calls:");
-	System.out.println( Franz );
-	System.out.println();
-
-	//System.out.println(Franz.findLin(1));
-	//System.out.println(Franz.findLin(15));
-
-	Franz = new OrderedArrayList();
-
-	System.out.println("\nValues to add via addBinary() calls:");
-
-				
-	// testing binary search
-	for( int i = 0; i < 15; i++ ) {
-	    int valToAdd = i;
-	    //System.out.println( valToAdd );
-	    Franz.addBinary( valToAdd );
-	}
-
-	System.out.println("\nafter population via addBinary() calls:");
-	System.out.println( Franz );
-	System.out.println();
-	
-	//System.out.println(Franz.findLin(1));
-	//System.out.println(Franz.findLin(15));
-
-	/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	   INSERT WELL-COMMENT TIMING APPARATUS HERE
-	   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	/*
+	  Test Cases:
+	  - look for last element
+	  - look for first element
+	  - look for middle element
+	  - look for (same) random element
+	 */
     }
 
 }//end class OrderedArrayList
