@@ -107,7 +107,27 @@ public class OrderedArrayList {
     // return index of occurrence or -1 if not found
     public int findBin( Comparable target ) 
     { 
-	/* YOUR IMPLEMENTAITON AQUI */
+	int lo = 0;
+	int med = 0;
+	int hi = _data.size()-1;
+
+	while (lo <= hi) {
+	    med = (lo+hi)/2;
+	    int x= _data.get(med).compareTo(target);
+
+	    if (x==0) {
+		return med;
+	    }
+	    else if (x>0) {
+		hi = med - 1;
+	    }
+	    else {
+		lo = med + 1;
+	    }
+
+	}
+
+	return -1;
     }
 
 
@@ -120,14 +140,17 @@ public class OrderedArrayList {
 
 	// testing linear search
 	for( int i = 0; i < 15; i++ ) {
-	    int valToAdd = (int)( 50 * Math.random() );
-	    System.out.println( valToAdd );
+	    int valToAdd = i;
+	    //System.out.println( valToAdd );
 	    Franz.addLinear( valToAdd );
 	}
 
 	System.out.println("\nafter population via addLinear() calls:");
 	System.out.println( Franz );
 	System.out.println();
+
+	//System.out.println(Franz.findLin(1));
+	//System.out.println(Franz.findLin(15));
 
 	Franz = new OrderedArrayList();
 
@@ -136,14 +159,17 @@ public class OrderedArrayList {
 				
 	// testing binary search
 	for( int i = 0; i < 15; i++ ) {
-	    int valToAdd = (int)( 50 * Math.random() );
-	    System.out.println( valToAdd );
+	    int valToAdd = i;
+	    //System.out.println( valToAdd );
 	    Franz.addBinary( valToAdd );
 	}
 
 	System.out.println("\nafter population via addBinary() calls:");
 	System.out.println( Franz );
 	System.out.println();
+	
+	//System.out.println(Franz.findLin(1));
+	//System.out.println(Franz.findLin(15));
 
 	/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	   INSERT WELL-COMMENT TIMING APPARATUS HERE
