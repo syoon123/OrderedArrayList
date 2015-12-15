@@ -1,4 +1,9 @@
 /*============================================
+Team Neame -- Sarah Yoon, Gabriel Marks, Grace Stempel
+APCS1 pd10
+HW48 -- Half ing Time Trials
+2015-12-14
+
   class OrderedArrayList
   Wrapper class for ArrayList.
   Imposes the restriction that stored items 
@@ -197,13 +202,7 @@ public class OrderedArrayList {
 
 	System.out.println("findLin: " + (finalLin - initialLin) + " ms");
 	System.out.println("findBin: " + (finalBin - initialBin) + " ms");
-	/*
-	  Test Cases:
-	  - look for last element
-	  - look for first element
-	  - look for middle element
-	  - look for (same) random element
-	 */
+	
     }
 
 }//end class OrderedArrayList
