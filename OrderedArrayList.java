@@ -12,7 +12,7 @@ HW48 -- Half ing Time Trials
 
 //ArrayList's implementation is in the java.util package
 import java.util.ArrayList;
-
+import java.io.*;
 
 public class OrderedArrayList {
 
@@ -137,73 +137,36 @@ public class OrderedArrayList {
 
 
     // main method solely for testing purposes
-    public static void main( String[] args ) 
-    {
-	OrderedArrayList Franz = new OrderedArrayList();
-
-	System.out.println("\nValues to add via addLinear() calls:");
-
-	// testing linear search
-	for( int i = 0; i < 15; i++ ) {
-	    int valToAdd = (int)( 50 * Math.random() );
-	    System.out.println( valToAdd );
-	    Franz.addLinear( valToAdd );
-	}
-
-	System.out.println("\nafter population via addLinear() calls:");
-	System.out.println( Franz );
-	System.out.println();
-
-	Franz = new OrderedArrayList();
-
-	System.out.println("\nValues to add via addBinary() calls:");
-
-				
-	// testing binary search
-	for( int i = 0; i < 15; i++ ) {
-	    int valToAdd = (int)( 50 * Math.random() );
-	    System.out.println( valToAdd );
-	    Franz.addBinary( valToAdd );
-	}
-
-	System.out.println("\nafter population via addBinary() calls:");
-	System.out.println( Franz );
-	System.out.println("\n\n\n");
-
-	/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	   Method for timing: 
-	   currentTimeMillis() returns the time from epoch in milliseconds as a long. If we record
-	   this value at the start and end of the tests and then take the difference between those 
-	   times, we will have the amount of time in milliseconds that the tests each took.
-	   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-	OrderedArrayList Jan = new OrderedArrayList();
-	for(int i = 0; i < 100000; i++){
-	    Jan._data.add(i);
-	}
-	System.out.println("Testing find function timing");
-	System.out.println("Testing findLin for 100000 values, 100000 times...");
+    public static void main( String[] args ) throws IOException {
+	    OrderedArrayList Jan = new OrderedArrayList();
+	    for(int i = 0; i < 100000; i++){
+		Jan._data.add(i);
+	    }
 	
-	long initialLin = System.currentTimeMillis();
-	for (int i=0; i<100000; i++) {
-	    int valToFind = (int)( 100000 * Math.random() );
-	    Jan.findLin(valToFind);
-	}
-	long finalLin = System.currentTimeMillis();
+	    PrintWriter writer = new PrintWriter("data.txt","UTF-8");
 	
-	System.out.println("Testing findBin for 100000 values, 100000 times...");
-	
-	long initialBin = System.currentTimeMillis();
-	for (int i=0; i<100000; i++) {
-	    int valToFind = (int)( 100000 * Math.random() );
-	    Jan.findBin(valToFind);
-	}
-	long finalBin = System.currentTimeMillis();
+	    for (int i=0; i<100000; i++) {
 
-	System.out.println("findLin: " + (finalLin - initialLin) + " ms");
-	System.out.println("findBin: " + (finalBin - initialBin) + " ms");
-	
+		int valToFind = (int)( 100000 * Math.random() );
+
+		long initialLin = System.nanoTime();
+		Jan.findLin(valToFind);
+		long finalLin = System.nanoTime();
+
+		long initialBin = System.nanoTime();
+		Jan.findBin(valToFind);
+		long finalBin = System.nanoTime();
+
+		long linTime = finalLin - initialLin;
+		long binTime = finalBin - initialBin;
+
+		writer.println(linTime + "," + binTime);
+
+	    }
+
+	    writer.close();
     }
+    
 
 }//end class OrderedArrayList
  
